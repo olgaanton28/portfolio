@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bobby+Jones:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 /* Reset and base styles */
 * {
@@ -8,13 +8,14 @@
 }
 
 :root {
-    --primary-color: #e5e5ec;
+    --primary-color: #8f5f9f;
     --primary-dark: #8f5f9f;
     --secondary-color: #f4f4f4;
     --tertiary-color: #f5f0ea;
-    --background-color: #ffffff;
-    --text-color: #ffffff;
+    --background-color: #fff;
+    --text-color: #333;
     --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    --accent-color: #f0f0f0;
 }
 
 html {

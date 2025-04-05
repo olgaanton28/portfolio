@@ -100,18 +100,20 @@ const portfolioItems = [
 ];
 
 const portfolioGrid = document.querySelector('.portfolio-grid');
-portfolioItems.forEach(item => {
-    const portfolioItem = document.createElement('div');
-    portfolioItem.className = 'portfolio-item';
-    portfolioItem.innerHTML = `
-        <img src="${item.image}" alt="${item.title}">
-        <div class="portfolio-item-content">
-            <h3>${item.title}</h3>
-            <p>${item.description}</p>
-        </div>
-    `;
-    portfolioGrid.appendChild(portfolioItem);
-});
+if (portfolioGrid) {
+    portfolioItems.forEach(item => {
+        const portfolioItem = document.createElement('div');
+        portfolioItem.className = 'portfolio-item';
+        portfolioItem.innerHTML = `
+            <img src="${item.image}" alt="${item.title}">
+            <div class="portfolio-item-content">
+                <h3>${item.title}</h3>
+                <p>${item.description}</p>
+            </div>
+        `;
+        portfolioGrid.appendChild(portfolioItem);
+    });
+}
 
 // Debug for "See my Work" button
 document.addEventListener('DOMContentLoaded', () => {
