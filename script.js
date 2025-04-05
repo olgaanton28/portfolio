@@ -22,45 +22,42 @@ burger.addEventListener('click', () => {
 
 // Smooth Scrolling for Navigation Links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+    // Only apply smooth scrolling to internal page links
+    if (anchor.getAttribute('href').startsWith('#')) {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         });
-    });
+    }
 });
 
-// Form Submission
-const contactForm = document.getElementById('contact-form');
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData);
-    
-    // Here you would typically send the data to a server
-    // For now, we'll just show a success message
-    alert('Thank you for your message! I will get back to you soon.');
-    this.reset();
-});
-
-// Scroll Animation for Elements
+// Scroll Animation
 const observerOptions = {
+    root: null,
+    rootMargin: '0px',
     threshold: 0.1
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
+            entry.target.classList.add('visible');
         }
     });
 }, observerOptions);
 
-// Observe all sections
-document.querySelectorAll('section').forEach(section => {
-    observer.observe(section);
+// Observe all animated elements
+document.addEventListener('DOMContentLoaded', () => {
+    const animatedElements = document.querySelectorAll('.about h2, .about-main, .skills, .contact h2, .contact-info, .info-item, .social-links');
+    animatedElements.forEach(element => {
+        observer.observe(element);
+    });
 });
 
 // Add animation class to elements when they come into view
@@ -114,4 +111,17 @@ portfolioItems.forEach(item => {
         </div>
     `;
     portfolioGrid.appendChild(portfolioItem);
+});
+
+// Debug for "See my Work" button
+document.addEventListener('DOMContentLoaded', () => {
+    const workButton = document.querySelector('.cta-button');
+    if (workButton) {
+        console.log('Work button found:', workButton.href);
+        workButton.addEventListener('click', (e) => {
+            console.log('Work button clicked');
+        });
+    } else {
+        console.log('Work button not found');
+    }
 }); 
